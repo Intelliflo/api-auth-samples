@@ -55,21 +55,16 @@ namespace IF.Samples.OAuth.RefreshToken.Security
                 properties = Options.StateDataFormat.Unprotect(state);
 
                 var oauth2Token = await GetOAuthTokenAsync(code);
-                var accessToken = oauth2Token["access_token"].Value<string>();
-
-                // Refresh token is only available when offline access (offline_access) is requested.
-                // Otherwise, it is null.
-                var refreshToken = oauth2Token.Value<string>("refresh_token");
-                var expire = oauth2Token.Value<string>("expires_in"); 
-
-                if (string.IsNullOrWhiteSpace(accessToken))
+                var access = new IFOAuthAccess(oauth2Token);
+                
+                if (string.IsNullOrWhiteSpace(access.AccessToken))
                 {
                     return new AuthenticationTicket(null, properties);
                 }
 
-                var accountInformation = await GetUserAccountInformation(accessToken);
+                var accountInformation = await GetUserAccountInformation(access.AccessToken);
 
-                var context = new IFOAuthContext(Context, accountInformation, accessToken, refreshToken, expire);
+                var context = new IFOAuthContext(Context, accountInformation, access);
                 context.Identity = new ClaimsIdentity(
                     new[]
                     {
@@ -82,7 +77,7 @@ namespace IF.Samples.OAuth.RefreshToken.Security
 
                 context.Properties = properties;
 
-                Context.PersistAccessTokens(accessToken, refreshToken, expire);
+                access.Persist(Context);
 
                 await Options.Provider.Authenticated(context);
 
@@ -169,8 +164,6 @@ namespace IF.Samples.OAuth.RefreshToken.Security
 
             return context.IsRequestCompleted;
         }
-
-        
 
         private string ConstructFullAuthorizationUri(string redirectUri)
         {

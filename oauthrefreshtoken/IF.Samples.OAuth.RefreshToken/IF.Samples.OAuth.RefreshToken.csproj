@@ -218,6 +218,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Security\IFOAuthAccess.cs" />
     <Compile Include="Security\IFOAuthConstants.cs" />
     <Compile Include="Security\IFOAuthContext.cs" />
     <Compile Include="Security\IFOAuthHandler.cs" />
@@ -231,7 +232,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\IOwinContextExtensions.cs" />
     <Compile Include="Security\Startup.IFOAuth.cs" />
     <Compile Include="Security\StringExtensions.cs" />
     <Compile Include="Startup.cs" />

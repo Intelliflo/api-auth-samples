@@ -22,16 +22,11 @@ namespace IF.Samples.OAuth.RefreshToken.Security
             if (currentRefreshToken != null)
             {
                 var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, Options);
-                var accessToken = oauth2Token["access_token"].Value<string>();
+                IFOAuthAccess access = new IFOAuthAccess(oauth2Token);
+                
+                access.Persist(Context);
 
-                // Refresh token is only available when offline access (offline_access) is requested.
-                // Otherwise, it is null.
-                var refreshToken = oauth2Token.Value<string>("refresh_token");
-                var expire = oauth2Token.Value<string>("expires_in"); // TODO refactor code clone
-
-                Context.PersistAccessTokens(accessToken, refreshToken, expire);
-
-                return accessToken;
+                return access.AccessToken;
             }
 
             return null;
