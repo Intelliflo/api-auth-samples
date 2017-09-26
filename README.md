@@ -4,7 +4,7 @@ Intelliflo Open API authentication samples
 ## Authorization Code Flow 
 
 ### sample in CSharp + MVC
-[OAuth using a login button](/oauthloginbutton/IF.Samples.OAuth.LoginButton.sln)
+[OAuth using a login button](/oauthloginbutton)
 
 #### Changes from standard VS template
  * Brief description in Project_Readme.html
