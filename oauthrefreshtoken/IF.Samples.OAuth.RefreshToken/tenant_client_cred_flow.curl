@@ -1,0 +1,18 @@
+TENANT CLIENT CREDENTIAL FLOW
+
+curl -X POST \
+  https://uat-identity.intelliflo.com/core/connect/token \
+  -H 'authorization: Basic {UTF-8 base 64 encoded clientId:clientSecret}' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -d 'grant_type=tenant_client_credentials&scope={space(%20) separated list of scopes}&tenant_id={id of tenant}'
+
+TENANT CLIENT CREDENTIAL EXAMPLE
+
+curl -X POST \
+  https://uat-identity.intelliflo.com/core/connect/token \
+  -H 'authorization: Basic YXBwLTQ5NzdlNmItdGNmLTUyZTUwZTQwYWVhMTQwMGE5Y2FjMWJjZmNhNzlmNWYyOklTZD1mUUxKfHFTdklTcnRIJS5TViolTGNHZzg2ag==' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -d 'grant_type=tenant_client_credentials&scope=firm_data%20client_data&tenant_id=123'
+  
