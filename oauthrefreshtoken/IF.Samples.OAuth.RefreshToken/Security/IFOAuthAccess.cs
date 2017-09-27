@@ -34,8 +34,7 @@ namespace IF.Samples.OAuth.RefreshToken.Security
             TimeSpan lifespan = TimeSpan.FromSeconds(Int32.Parse(this.ExpiresIn, CultureInfo.InvariantCulture));
 
             CookieOptions accessCookieOptions = new CookieOptions();
-            //accessCookieOptions.Expires = DateTime.UtcNow.Add(lifespan); // TODO restore
-            accessCookieOptions.Expires = DateTime.UtcNow.AddSeconds(30); // TODO remove
+            accessCookieOptions.Expires = DateTime.UtcNow.Add(lifespan); 
             accessCookieOptions.HttpOnly = true;
             accessCookieOptions.Secure = true;
 

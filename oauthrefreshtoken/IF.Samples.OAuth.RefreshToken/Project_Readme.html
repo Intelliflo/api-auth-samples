@@ -83,14 +83,18 @@
             padding: 4px 0;
         }
 
+        li ul {
+            padding-left: 20px; padding-top: 10px;
+        }
+
         a {
             color: #267cb2;
             text-decoration: none;
         }
 
-            a:hover {
-                text-decoration: underline;
-            }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -112,18 +116,18 @@
             <h3>From Intelliflo:</h3>
             <ul>
                 <li>Sample code showing how to use OAuth to log in to your application using the Intelliflo identity provider:
-
-                    <div style="padding-left: 20px; padding-top: 10px;">
-                        <ul>
-                            <li>A "Log in with Intelliflo" button on the Login view</li>
-                            <li>An "IntellifloLogin" method on the AccountController</li>
-                            <li>AppSettings in web.config</li>
-                            <li>OAuth middleware in the Security code directory</li>
-                            <li>Requesting a refresh token</li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li>A "Log in with Intelliflo" button on the Login view</li>
+                        <li>An "IntellifloLogin" method on the AccountController</li>
+                        <li>AppSettings in web.config</li>
+                        <li>OAuth middleware in the Security code directory</li>
+                    </ul>
                 </li>
-                <li>Sample code showing how to obtain an access token using the refresh token</li>
+                <li>Sample code showing how to obtain an access token using the refresh token
+                    <ul>
+                        <li>In the RefreshTokenController</li>
+                    </ul>
+                </li>
                 <li></li>
             </ul>
         </div>

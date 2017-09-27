@@ -13,20 +13,27 @@ namespace IF.Samples.OAuth.RefreshToken.Security
 {
     public static class IFOAuthRefreshTokenProvider
     {
-        public static async Task<string> RefreshAccessAsync(IOwinContext Context)
+        public static async Task<IFOAuthAccess> RefreshAccessAsync(IOwinContext Context)
         {
-            var Options = IFOAuthOptions.Construct();
-
-            string currentRefreshToken = Context.Request.Cookies["iflo_refresh_token"];
-
-            if (currentRefreshToken != null)
+            try
             {
-                var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, Options);
-                IFOAuthAccess access = new IFOAuthAccess(oauth2Token);
-                
-                access.Persist(Context);
+                var Options = IFOAuthOptions.Construct();
 
-                return access.AccessToken;
+                string currentRefreshToken = Context.Request.Cookies["iflo_refresh_token"];
+
+                if (currentRefreshToken != null)
+                {
+                    var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, Options);
+                    IFOAuthAccess access = new IFOAuthAccess(oauth2Token);
+
+                    access.Persist(Context);
+
+                    return access;
+                }
+            }
+            catch (Exception)
+            {
+                // TODO handle exceptions
             }
 
             return null;

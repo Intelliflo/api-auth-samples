@@ -68,7 +68,7 @@ namespace IF.Samples.OAuth.RefreshToken.Security
                 context.Identity = new ClaimsIdentity(
                     new[]
                     {
-                        new Claim(ClaimTypes.NameIdentifier, context.Name, ClaimValueTypes.String, Options.AuthenticationType), // TODO need id this back from user info service
+                        new Claim(ClaimTypes.NameIdentifier, context.Name, ClaimValueTypes.String, Options.AuthenticationType), // TODO need this id back from user info service
                         new Claim(ClaimTypes.Name, context.Name, ClaimValueTypes.String, Options.AuthenticationType)
                     },
                     Options.AuthenticationType,
