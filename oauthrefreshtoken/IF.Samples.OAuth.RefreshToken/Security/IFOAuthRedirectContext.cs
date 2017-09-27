@@ -16,7 +16,7 @@ namespace IF.Samples.OAuth.RefreshToken.Security
         public string RedirectUri { get; private set; }
 
         /// <summary>
-        /// Gets the authenticaiton properties of the challenge
+        /// Gets the authentication properties of the challenge
         /// </summary>
         public AuthenticationProperties Properties { get; private set; }
     }

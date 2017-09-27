@@ -25,12 +25,31 @@ namespace IF.Samples.OAuth.RefreshToken.Security
         /// <remarks>Should match a redirect URL set up in the developer portal</remarks>
         public PathString CallbackPath { get; set; }
 
+        /// <summary>
+        /// List of scopes to use when authenticating
+        /// </summary>
         public IList<string> Scope { get; private set; }
+
+        /// <summary>
+        /// URL to redirect to when using Authorization Code Flow
+        /// </summary>
         public string AuthorizationEndpoint { get; set; }
+
+        /// <summary>
+        /// URL of service to get an access token from
+        /// </summary>
         public string TokenEndpoint { get; set; }
+
+        /// <summary>
+        /// URL of service to get user information from
+        /// </summary>
         public string UserInfoEndpoint { get; set; }
 
+        /// <summary>
+        /// Default authentication type for the application
+        /// </summary>
         public string SignInAsAuthenticationType { get; set; }
+
         public IFOAuthProvider Provider { get; set; }
         public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }
         public ICookieManager CookieManager { get; set; }
@@ -43,6 +62,10 @@ namespace IF.Samples.OAuth.RefreshToken.Security
             Provider = new IFOAuthProvider();
         }
 
+        /// <summary>
+        /// Reads settings from config file and creates a prototypical instance of an IFOAuthOptions entity
+        /// </summary>
+        /// <returns>A fully populated IFOAuthOptions entity</returns>
         public static IFOAuthOptions Construct()
         {
             // Client Id from the Intelliflo developer portal

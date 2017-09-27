@@ -9,8 +9,14 @@ using Microsoft.Owin;
 
 namespace IF.Samples.OAuth.RefreshToken.Controllers
 {
+    /// <summary>
+    /// Controller for demonstrating how to refresh an access token
+    /// </summary>
     public class RefreshTokenController : Controller
     {
+        /// <summary>
+        /// Method for demonstrating how to refresh an access token
+        /// </summary>
         // GET: RefreshToken
         public async Task<ActionResult> Index()
         {

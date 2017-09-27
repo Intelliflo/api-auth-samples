@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Samples.OAuth.RefreshToken.Security
 {
+    /// <summary>
+    /// Encapsulates an OAuth token
+    /// </summary>
     public class IFOAuthAccess
     {
         public string AccessToken { get; set; }
@@ -27,7 +30,7 @@ namespace IF.Samples.OAuth.RefreshToken.Security
         /// <summary>
         /// Currently persists to cookies
         /// </summary>
-        /// <param name="context">Used for persisting to cookies</param>
+        /// <param name="context">Used to gain access to the cookie collection</param>
         /// <remarks>Could replace this method with one that writes to session, database, claims .... etc.</remarks>
         public void Persist(IOwinContext context)
         {
