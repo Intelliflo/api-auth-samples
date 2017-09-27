@@ -13,25 +13,27 @@ namespace IF.Samples.OAuth.RefreshToken.Security
 {
     public static class IFOAuthRefreshTokenProvider
     {
-        public static async Task<string> RefreshAccessAsync(IOwinContext Context)
+        public static async Task<IFOAuthAccess> RefreshAccessAsync(IOwinContext Context)
         {
-            var Options = IFOAuthOptions.Construct();
-
-            string currentRefreshToken = Context.Request.Cookies["iflo_refresh_token"];
-
-            if (currentRefreshToken != null)
+            try
             {
-                var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, Options);
-                var accessToken = oauth2Token["access_token"].Value<string>();
+                var Options = IFOAuthOptions.Construct();
 
-                // Refresh token is only available when offline access (offline_access) is requested.
-                // Otherwise, it is null.
-                var refreshToken = oauth2Token.Value<string>("refresh_token");
-                var expire = oauth2Token.Value<string>("expires_in"); // TODO refactor code clone
+                string currentRefreshToken = Context.Request.Cookies["iflo_refresh_token"];
 
-                Context.PersistAccessTokens(accessToken, refreshToken, expire);
+                if (currentRefreshToken != null)
+                {
+                    var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, Options);
+                    IFOAuthAccess access = new IFOAuthAccess(oauth2Token);
 
-                return accessToken;
+                    access.Persist(Context);
+
+                    return access;
+                }
+            }
+            catch (Exception)
+            {
+                // TODO handle exceptions
             }
 
             return null;

@@ -32,6 +32,11 @@ namespace IF.Samples.OAuth.RefreshToken.Security
             Name = TryGetValue(user, "name"); 
         }
 
+        public IFOAuthContext(IOwinContext context, JObject user, IFOAuthAccess access)
+            : this(context, user, access.AccessToken, access.RefreshToken, access.ExpiresIn)
+        {
+        }
+
         private static string TryGetValue(IDictionary<string, JToken> dictionary, string propertyName )
         {
             return dictionary.ContainsKey(propertyName) ? dictionary[propertyName].ToString() : null;
