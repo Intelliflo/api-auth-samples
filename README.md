@@ -14,7 +14,7 @@ Intelliflo Open API authentication samples
  * OAuth middleware in the /Security directory
  * Calling Startup.IFOAuth from App_Start.Startup.Auth
 
-#### Dependencies
+#### Pre-requisites
  * An appropriately configured client in the developer portal
  * This is configured to use the UAT versions of the portal and identity service
 
@@ -27,13 +27,12 @@ Intelliflo Open API authentication samples
 ### Sample in CSharp + MVC
 [OAuth, obtaining a refresh token](/oauthrefreshtoken)
 
-This is based on the CSharp Authorization Code Flow sample
-This uses cookies to persist the access token - this is probably not where you would want to store this data
+This is based on the CSharp Authorization Code Flow sample.
+This uses cookies to persist the access token - this is probably not where you would want to store this data.
 
 #### Todo
  * Remove hacks to work around the inability to change anything in the developer portal
- * Refactoring to restructure and remove code clones
-
+ 
 
 ## cURL Scripts
 
@@ -45,5 +44,5 @@ There are currently examples for:
 
 [Scripts](/curlscripts)
 
-#### Dependencies
+#### Pre-requisites
  * An appropriately configured client in the developer portal

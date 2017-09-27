@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Refresh Token";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+@if (!string.IsNullOrWhiteSpace(@ViewBag.AccessToken))
+{
+    <p>
+        <strong>Access Token:</strong>
+        @Html.TextBox("access", (string)ViewBag.AccessToken, new { @class = "form-control" }) 
+    </p>
+}
+
+@if (!string.IsNullOrWhiteSpace(@ViewBag.RefreshToken))
+{
+    <p>
+        <strong>Refresh Token:</strong>
+        @Html.TextBox("refresh", (string)ViewBag.RefreshToken, new { @class = "form-control" }) 
+    </p>
+}
+
+@if (!string.IsNullOrWhiteSpace(@ViewBag.ExpiresIn))
+{
+    <p>
+        <strong>Expires In:</strong>
+        @Html.TextBox("expires", (string)ViewBag.ExpiresIn, new { @class = "form-control" })
+    </p>
+}

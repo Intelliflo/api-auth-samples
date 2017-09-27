@@ -6,7 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using IF.Samples.OAuth.RefreshToken.Security;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
@@ -32,21 +31,8 @@ namespace IF.Samples.OAuth.RefreshToken.Controllers
             return View();
         }
 
-        public async Task<ActionResult> About()
+        public ActionResult About()
         {
-            /**************************************/
-            IOwinContext context = HttpContext.GetOwinContext();
-            var accessCookie = HttpContext.Request.Cookies["iflo_access_token"];
-            string accessToken = accessCookie == null ? null : accessCookie.Value;
-
-            if (string.IsNullOrWhiteSpace(accessToken))
-            {
-                accessToken = await IFOAuthRefreshTokenProvider.RefreshAccessAsync(context); 
-            }
-            // can now use access token for calls to the API
-            /**************************************/
-
-
             ViewBag.Message = "Your application description page.";
 
             return View();

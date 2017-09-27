@@ -215,9 +215,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RefreshTokenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Security\IFOAuthAccess.cs" />
     <Compile Include="Security\IFOAuthConstants.cs" />
     <Compile Include="Security\IFOAuthContext.cs" />
     <Compile Include="Security\IFOAuthHandler.cs" />
@@ -231,7 +233,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\IOwinContextExtensions.cs" />
     <Compile Include="Security\Startup.IFOAuth.cs" />
     <Compile Include="Security\StringExtensions.cs" />
     <Compile Include="Startup.cs" />
@@ -296,6 +297,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\RefreshToken\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
