@@ -11,22 +11,30 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Samples.OAuth.RefreshToken.Security
 {
+    /// <summary>
+    /// Refreshes the access token based on a valid access token
+    /// </summary>
     public static class IFOAuthRefreshTokenProvider
     {
-        public static async Task<IFOAuthAccess> RefreshAccessAsync(IOwinContext Context)
+        /// <summary>
+        /// Requests a new OAuth token from the Authorization service
+        /// </summary>
+        /// <param name="context">The context to sue for cookie access</param>
+        /// <returns>The OAuth token</returns>
+        public static async Task<IFOAuthAccess> RefreshAccessAsync(IOwinContext context)
         {
             try
             {
-                var Options = IFOAuthOptions.Construct();
+                var authOptions = IFOAuthOptions.Construct();
 
-                string currentRefreshToken = Context.Request.Cookies["iflo_refresh_token"];
+                string currentRefreshToken = context.Request.Cookies["iflo_refresh_token"];
 
                 if (currentRefreshToken != null)
                 {
-                    var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, Options);
+                    var oauth2Token = await RefreshAccessTokenAsync(currentRefreshToken, authOptions);
                     IFOAuthAccess access = new IFOAuthAccess(oauth2Token);
 
-                    access.Persist(Context);
+                    access.Persist(context);
 
                     return access;
                 }
@@ -39,9 +47,15 @@ namespace IF.Samples.OAuth.RefreshToken.Security
             return null;
         }
 
-        public static async Task<JObject> RefreshAccessTokenAsync(string refreshToken, IFOAuthOptions Options)
+        /// <summary>
+        /// Requests a new OAuth token from the Authorization service
+        /// </summary>
+        /// <param name="refreshToken">The refresh token to use</param>
+        /// <param name="options">Parameters to use when making the call</param>
+        /// <returns>The OAuth token</returns>
+        public static async Task<JObject> RefreshAccessTokenAsync(string refreshToken, IFOAuthOptions options)
         {
-            string scopes = string.Join(" ", Options.Scope);
+            string scopes = string.Join(" ", options.Scope);
 
             var tokenRequestParameters = new List<KeyValuePair<string, string>>
                 {
@@ -52,9 +66,9 @@ namespace IF.Samples.OAuth.RefreshToken.Security
 
             var requestContent = new FormUrlEncodedContent(tokenRequestParameters);
 
-            var authorizationHeaderValue = BuildAuthorizationHeaderValue(Options);
+            var authorizationHeaderValue = BuildAuthorizationHeaderValue(options);
 
-            var refreshTokenRequest = new HttpRequestMessage(HttpMethod.Post, Options.TokenEndpoint);
+            var refreshTokenRequest = new HttpRequestMessage(HttpMethod.Post, options.TokenEndpoint);
             refreshTokenRequest.Headers.Authorization = new AuthenticationHeaderValue("Basic", authorizationHeaderValue);
             refreshTokenRequest.Content = new FormUrlEncodedContent(tokenRequestParameters);
 
@@ -68,10 +82,14 @@ namespace IF.Samples.OAuth.RefreshToken.Security
             return oauth2Token;
         }
 
-        private static string BuildAuthorizationHeaderValue(IFOAuthOptions Options)
+        /// <summary>
+        /// Concatenates and encodes client credentials for use in an authorization header
+        /// </summary>
+        /// <param name="options">Contains the client credentials</param>
+        /// <returns>Client credentials for use in an authorization header</returns>
+        private static string BuildAuthorizationHeaderValue(IFOAuthOptions options)
         {
-            string authorizationCreds = string.Format(CultureInfo.InvariantCulture, "{0}:{1}", Options.ClientId,
-                Options.ClientSecret);
+            string authorizationCreds = string.Format(CultureInfo.InvariantCulture, "{0}:{1}", options.ClientId, options.ClientSecret);
             authorizationCreds = authorizationCreds.ToUtf8Hex();
             return authorizationCreds;
         }
