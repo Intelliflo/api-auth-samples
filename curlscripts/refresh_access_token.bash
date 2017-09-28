@@ -1,3 +1,4 @@
+#!/bin/bash
 # BASIC REFRESH ACCESS TOKEN REQUEST
 
 # space(%20) separated list of scopes
@@ -7,12 +8,14 @@ CLIENT_HDR="YXBwLTQ5NzdlNmItdGNmLTUyZTUwZTQwYWVhMTQwMGE5Y2FjMWJjZmNhNzlmNWYyOklT
 # refresh token from initial authorization call to identity service
 REFRESH_TOKEN="c8de93ead73ad1d2acd3c7cfb83e1ea7"
 
-curl -X POST \
+RESPONSE=$(curl -X POST \
   https://identity.intelliflo.com/core/connect/token \
   -H "authorization: Basic $CLIENT_HDR" \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
-  -d "grant_type=refresh_token&refresh_token=$REFRESH_TOKEN&scope=$SCOPES"
+  -d "grant_type=refresh_token&refresh_token=$REFRESH_TOKEN&scope=$SCOPES")
+
+ECHO $RESPONSE
 
 # EXAMPLE REFRESH ACCESS TOKEN RESPONSE
 #{

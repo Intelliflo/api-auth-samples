@@ -1,3 +1,4 @@
+#!/bin/bash
 # TENANT CLIENT CREDENTIAL FLOW
 
 # tenant id
@@ -7,12 +8,14 @@ SCOPE="client_data%20firm_data"
 # UTF-8 base 64 encoded clientId:clientSecret
 CLIENT_HDR="YXBwLTQ5NzdlNmItdGNmLTUyZTUwZTQwYWVhMTQwMGE5Y2FjMWJjZmNhNzlmNWYyOklTZD1mUUxKfHFTdklTcnRIJS5TViolTGNHZzg2ag==" 
 
-curl -X POST \
+RESPONSE=$(curl -X POST \
   https://identity.intelliflo.com/core/connect/token \
   -H "authorization: Basic $CLIENT_HDR" \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
-  -d "grant_type=tenant_client_credentials&scope=$SCOPE&tenant_id=$TENANT_ID"
+  -d "grant_type=tenant_client_credentials&scope=$SCOPE&tenant_id=$TENANT_ID")
+
+ECHO $RESPONSE
 
 # EXAMPLE result
 #{
