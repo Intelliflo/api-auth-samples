@@ -7,12 +7,8 @@ Intelliflo Open API authentication samples
 [OAuth using a login button](/oauthloginbutton)
 
 #### Changes from standard VS template
- * Brief description in Project_Readme.html
- * A "Log in with Intelliflo" button on the Login view
- * An "IntellifloLogin" method on the AccountController
- * AppSettings in web.config
- * OAuth middleware in the /Security directory
- * Calling Startup.IFOAuth from App_Start.Startup.Auth
+ * OWIN Intelliflo OAuth middleware added as separate project
+ * `Startup.Auth.cs` updated to register middleware
 
 #### Pre-requisites
  * An appropriately configured client in the developer portal

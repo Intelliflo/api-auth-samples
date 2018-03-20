@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Samples.LoginButton", "IF.Samples.LoginButton\IF.Samples.LoginButton.csproj", "{90FFBB39-A896-4242-8641-0288E803FCF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Owin.Security.Provider.Intelliflo", "Owin.Security.Provider.Intelliflo\Owin.Security.Provider.Intelliflo.csproj", "{FDD09E0F-5023-47EB-B012-9D52FEA27D53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90FFBB39-A896-4242-8641-0288E803FCF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FFBB39-A896-4242-8641-0288E803FCF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FFBB39-A896-4242-8641-0288E803FCF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FFBB39-A896-4242-8641-0288E803FCF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD09E0F-5023-47EB-B012-9D52FEA27D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD09E0F-5023-47EB-B012-9D52FEA27D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD09E0F-5023-47EB-B012-9D52FEA27D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD09E0F-5023-47EB-B012-9D52FEA27D53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36340B64-8B33-4625-B631-1E2508B1D737}
+	EndGlobalSection
+EndGlobal
